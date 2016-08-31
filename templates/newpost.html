@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block body %}
+<h2> New Post </h2>
+<form method="post" action="/add">
+	<table>
+		<tr>
+			<td><label for="post_title">Title:</label></td>
+			<td><input name="post_title" id="post_title" type="text" value="{{ title }}"/></td>
+			<td class="error">{{ t_error }}</td>
+		</tr>
+		<tr>
+			<td style="vertical-align: top;"><label for="post_content">Post:</label></td>
+			<td><textarea name="post_content" id="post_content">{{ content }}</textarea></td>
+			<td class="error">{{ c_error }}</td>
+		</tr>
+		<tr>
+			<td></td><td style="text-align: right;"><input type="submit" value="post"/></td>
+		</tr>
+	</table>
+</form>
+
+{% endblock %}

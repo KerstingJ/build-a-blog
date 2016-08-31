@@ -1,0 +1,28 @@
+<HTML>
+	<head>
+	<title> build-a-blog </title>
+	</head>
+	
+	<style type="text/css">
+		.error { color: red; }
+		.head { color: white; background-color: black;
+				width: 100%; margin: 0; padding: 6px;}
+		.main { margin-left: 8px; }
+		body { font-family: sans-serif; width:100%}
+		textarea { width: 400px; height: 200px; }
+		.ptitle, a{ text-decoration: none; font-family: sans-serif; font-size: 16px;
+				  min-width: 100px; }
+		.pcontent { font-size: 10px;}
+		table.posts td { border-bottom: 1px solid #ddd; }
+	</style>
+	
+	<body>
+		<div class="head">
+			Build-a-Blog
+		</div>
+		<div class="main">
+			{% block body %}
+			{% endblock %}
+		</div>
+	</body>
+</HTML>

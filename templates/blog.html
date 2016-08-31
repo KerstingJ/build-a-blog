@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block body %}
+<h2>Blog</h2>
+<form>
+	<table class="posts">
+		{% for post in posts %}
+		<tr>
+			<td class="ptitle"><a href="/blog/{{ post.key() }}">{{ post.title }}</a></td>
+			<td class="pcontent">{{ post.content }}</td>
+		</tr>
+		{% endfor %}
+	</table>
+</form>
+
+{% endblock %}

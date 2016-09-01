@@ -1,13 +1,14 @@
 {% extends "base.html" %}
 {% block body %}
-<h2>Blog</h2>
+<h2> {{title}} </h2>
+<a style="text-align: center; display:block; background-color: black; color: white; width:140px; padding:4px; margin-bottom: 8px;"
+   href="/newpost" padding:4px;> Add New Post </a>
 <form>
 	<table class="posts">
 		{% for post in posts %}
-		<tr>
-			<td class="ptitle"><a href="/blog/{{ post.key() }}">{{ post.title }}</a></td>
-			<td class="pcontent">{{ post.content }}</td>
-		</tr>
+		<div class="ptitle"><a href="/blog/{{ post.key().id() }}">{{ post.title }}</a></div>
+		<div class="pcontent">{{ post.content }}</div>
+		<hr>
 		{% endfor %}
 	</table>
 </form>

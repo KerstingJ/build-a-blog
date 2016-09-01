@@ -4,7 +4,9 @@
 {% if page >= 2 %}
 <a href="/blog?page={{ page - 1 }}"> &lt;&lt; previous </a> |
 {% endif %}
+{% if page < tpages %}
 <a href="/blog?page={{ page + 1 }}"> next &gt;&gt;</a>
+{% endif %}
 
 <form>
 	<table class="posts">
@@ -18,4 +20,5 @@
 	</table>
 </form>
 
+<div style="text-align: right;">page: {{page}} of: {{tpages}}</div>
 {% endblock %}

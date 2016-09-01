@@ -1,15 +1,15 @@
 {% extends "base.html" %}
 {% block body %}
-
+<div class="page-nav">
 {% if page >= 2 %}
-<a href="/blog?page={{ page - 1 }}"> &lt;&lt; previous </a> |
+<a class="back-nav" href="/blog?page={{ page - 1 }}"> &lt;&lt; previous </a>
 {% endif %}
 {% if page < tpages %}
-<a href="/blog?page={{ page + 1 }}"> next &gt;&gt;</a>
+<a class="next-nav" href="/blog?page={{ page + 1 }}"> next &gt;&gt;</a>
 {% endif %}
+</div>
 
 <form>
-	<table class="posts">
 		{% for post in posts %}
 		<div class="entry">
 			<div class="ptitle"><a href="/blog/{{ post.key().id() }}">{{ post.title }}</a></div>
@@ -17,7 +17,6 @@
 		</div>
 		<hr>
 		{% endfor %}
-	</table>
 </form>
 
 <div style="text-align: right; margin-right:4px;">page: {{page}} of: {{tpages}}</div>

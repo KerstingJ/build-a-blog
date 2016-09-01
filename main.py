@@ -51,7 +51,7 @@ class NewPost(webapp2.RequestHandler):
 		
 		self.response.write(render_temp('newpost.html', t_error=t_error,
 										c_error=c_error, content=content,
-										title=title, ptitle="New Post"))
+										title=title, ptitle="New Entry"))
 
 class AddPost(webapp2.RequestHandler):
 	def post(self):

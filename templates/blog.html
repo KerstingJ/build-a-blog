@@ -1,5 +1,11 @@
 {% extends "base.html" %}
 {% block body %}
+
+{% if page >= 2 %}
+<a href="/blog?page={{ page - 1 }}"> &lt;&lt; previous </a> |
+{% endif %}
+<a href="/blog?page={{ page + 1 }}"> next &gt;&gt;</a>
+
 <form>
 	<table class="posts">
 		{% for post in posts %}

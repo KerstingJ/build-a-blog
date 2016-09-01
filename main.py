@@ -29,6 +29,10 @@ def render_temp(template_name, **kargs):
 	template = jinja_env.get_template(template_name)
 	return template.render(**kargs)
 
+def get_posts(num_posts, offset):
+	return db.GqlQuery("SELECT * FROM Posts ORDER BY created DESC LIMIT " +
+					   "{} OFFSET {}".format(num_posts, offset))
+
 class Posts(db.Model):
 	title = db.StringProperty(required = True)
 	content = db.TextProperty(required = True)
@@ -79,14 +83,23 @@ class AddPost(webapp2.RequestHandler):
 class Blog(webapp2.RequestHandler):
 	''' handler for /blog '''
 	def get(self):
-		posts = db.GqlQuery("SELECT * FROM Posts ORDER BY created DESC LIMIT 5")
-		self.response.write(render_temp('blog.html', posts=posts, ptitle="Blog"))
+		page = self.request.get("page")
+		page = page if page and int(page) else 1
+		page = int(page)
+		if page == 1:
+			offset = 0
+		else:
+			offset = page * 5 - 1
+			
+		posts = get_posts(5, offset) 
+		self.response.write(render_temp('blog.html', posts=posts, ptitle="Blog", page=page))
 
 class ViewPostHandler(webapp2.RequestHandler):
 	''' handler for /blog/id instances '''
 	def get(self, post_id):
 		post_id = post_id if post_id and int(post_id) else ""
 		post = Posts.get_by_id(int(post_id))
+		#this is me being lazy
 		self.response.write(""" <div style="font-family:sans-serif;">"""
 							"""<h1> {} </h1> {}</div<""".format(post.title, post.content))
 		

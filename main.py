@@ -89,7 +89,7 @@ class Blog(webapp2.RequestHandler):
 		if page == 1:
 			offset = 0
 		else:
-			offset = page * 5 - 6
+			offset = page * 5 - 5
 			
 		posts = get_posts(5, offset)
 		total_posts = posts.count()

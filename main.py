@@ -47,7 +47,7 @@ class NewPost(webapp2.RequestHandler):
 		
 		self.response.write(render_temp('newpost.html', t_error=t_error,
 										c_error=c_error, content=content,
-										title=title))
+										title=title, ptitle="New Post"))
 
 class AddPost(webapp2.RequestHandler):
 	def post(self):
@@ -80,14 +80,15 @@ class Blog(webapp2.RequestHandler):
 	''' handler for /blog '''
 	def get(self):
 		posts = db.GqlQuery("SELECT * FROM Posts ORDER BY created DESC LIMIT 5")
-		self.response.write(render_temp('blog.html', posts=posts, title="Blog"))
+		self.response.write(render_temp('blog.html', posts=posts, ptitle="Blog"))
 
 class ViewPostHandler(webapp2.RequestHandler):
 	''' handler for /blog/id instances '''
 	def get(self, post_id):
 		post_id = post_id if post_id and int(post_id) else ""
-		posts = [Posts.get_by_id(int(post_id))]
-		self.response.write(render_temp('blog.html', posts=posts, title=posts[0].title))
+		post = Posts.get_by_id(int(post_id))
+		self.response.write(""" <div style="font-family:sans-serif;">"""
+							"""<h1> {} </h1> {}</div<""".format(post.title, post.content))
 		
 
 app = webapp2.WSGIApplication([

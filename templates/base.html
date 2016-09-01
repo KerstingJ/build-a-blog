@@ -4,22 +4,32 @@
 	</head>
 	
 	<style type="text/css">
-		.error { color: red; }
-		.head { color: white; background-color: black;
-				width: 100%; margin: 0; padding: 6px;}
-		.main { margin-left: 0px; max-width:800px;}
-		body { font-family: sans-serif; width:100%}
+		body { font-family: sans-serif; margin: 0; }
+		h2 {margin: 4px; }
 		textarea { width: 400px; height: 200px; }
+		.error { color: red; }
+		.head { color: white; background-color: black; width:100%; margin-bottom: 5px;}
+		.entry { margin: 4px; }
+		.main { margin-left: 0px; max-width:800px;}
 		.ptitle, a{ text-decoration: none; font-family: sans-serif; font-size: 16px;
 				  min-width: 100px; }
 		.pcontent { font-size: 10px; margin-left: 12px;}
-		table.posts td { border-bottom: 1px solid #ddd; }
+		.nav-link { text-align: center;
+					display:inline-block;
+					background-color: black;
+					color: white;
+					padding:4px;
+		}
 	</style>
 	
 	<body>
+		<h2> {{ptitle}} </h2>
+		
 		<div class="head">
-			Build-a-Blog
+			<a class="nav-link" href="/blog"> Build-A-Blog </a> |
+			<a class="nav-link" href="/newpost"> Add New Entry </a>
 		</div>
+		
 		<div class="main">
 			{% block body %}
 			{% endblock %}

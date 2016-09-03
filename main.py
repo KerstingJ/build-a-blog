@@ -71,14 +71,16 @@ class AddPost(webapp2.RequestHandler):
 			if "t_error" in error:
 				error += "&content=" + text
 		
-		if error != ("title="+title):
-			self.redirect("/?" + error)
+		print(error)
 		
-		if title and text:
+		if error != "title=" + title:
+			self.redirect("/newpost?" + error)
+		elif (title and title.strip() != "") and (text and text.strip() != ""):
 			p = Posts(title=title, content=text)
 			p.put()
-			
 			self.redirect("/blog")
+		else:
+			self.response.write("you broke it")
 
 class Blog(webapp2.RequestHandler):
 	''' handler for /blog '''

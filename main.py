@@ -108,7 +108,7 @@ class ViewPostHandler(webapp2.RequestHandler):
 		self.response.write(""" <div style="font-family:sans-serif;">"""
 							"""<h1> {} </h1> {}</div<""".format(post.title, post.content))
 		
-
+#testing something
 app = webapp2.WSGIApplication([
 	('/', Blog),
 	('/add', AddPost),
